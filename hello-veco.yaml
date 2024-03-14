@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hello-keswick
+  labels:
+    app: metallb
+---
+apiVersion:  apps/v1
+kind: Deployment
+metadata:
+  name: nginx-helloworld-deployment
+  namespace: hello-keswick
+spec:
+  selector:
+    matchLabels:
+      app: nginx-hello-keswick
+  replicas: 1 # tells deployment to run 1 pod matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx-hello-keswick
+    spec:
+      containers:
+      - name: nginx-helloworld
+        image: alanrenouf/docker-nginx-hello-keswick
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngnix-service
+  namespace: hello-keswick
+spec:
+  selector:
+    app: nginx-hello-keswick
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
