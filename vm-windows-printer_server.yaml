@@ -1,0 +1,29 @@
+#example deployment and post customsiation for Photon VM
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: windows-file-server
+  namespace: default
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: guaranteed-small
+  imageName: ent.box.com/shared/static/5ffcrsuvhqxt5fmqn4shka1pvg9biylb.ova
+  powerState: poweredOn
+  networkInterfaces:
+  - networkName: "VM Network"
+    ethernetCardType: "vmxnet3"
+  vmMetadata:
+    configMapName: user-data-windows
+    transport: CloudInit
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: user-data-windows
+    namespace: default
+data:
+  user-data: |
+    #ps1
+    Install-WindowsFeature -Name Print-Server
+    Restart-Computer
