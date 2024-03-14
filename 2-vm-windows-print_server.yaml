@@ -7,7 +7,7 @@ metadata:
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
-  className: guaranteed-small
+  className: best-effort-small
   imageName: 192.168.0.10:9000/tinywin.ova
   powerState: poweredOn
   networkInterfaces:
