@@ -2,7 +2,7 @@
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: windows-file-server
+  name: win-rfid-reader
   namespace: default
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
