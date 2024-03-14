@@ -8,7 +8,7 @@ metadata:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
   className: guaranteed-small
-  imageName: ent.box.com/shared/static/5ffcrsuvhqxt5fmqn4shka1pvg9biylb.ova
+  imageName: https://drive.google.com/file/d/1MeaXLZPqso-2MiDB_M2ncj_3eGUujCZg/view?usp=sharing
   powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Network"
