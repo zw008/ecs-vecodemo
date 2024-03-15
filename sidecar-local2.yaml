@@ -1,65 +1,46 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: git-sync-example
+  name: git-sync
   namespace: default
+  labels:
+    app: sidecar
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: git-sync-example
-  template:
-    metadata:
-      labels:
-        app: git-sync-example
-    spec:
-      securityContext:
-        # Set this to any valid GID, and two things happen:
-        #   1) The volume "content-from-git" is group-owned by this GID.
-        #   2) This GID is added to each container.
-        fsGroup: 101
-      volumes:
-        - name: content-from-git
-          emptyDir: {}
-      containers:
-        - name: git-sync
-          # This container pulls git data and publishes it into volume
-          # "content-from-git".  In that volume you will find a symlink
-          # "current" (see -dest below) which points to a checked-out copy of
-          # the master branch (see -branch) of the repo (see -repo).
-          # NOTE: git-sync already runs as non-root.
-          image: registry.k8s.io/git-sync/git-sync:v4.0.0
-          args:
-            - --repo=https://github.com/vladracs/webpages.git
-            - --depth=1
-            - --period=60
-            - --link=current
-            - --root=/git
-          volumeMounts:
-            - name: content-from-git
-              mountPath: /git
-        - name: server
-          # This container serves the data pulled from git, via the volume
-          # "content-from-git".
-          # NOTE: apache runs as root to expose port 80, and there's not a
-          # trivial flag to change that.  Real servers should not run as root
-          # when possible.
-          image: nginx
-          volumeMounts:
-          - name: html
-            mountPath: /usr/share/nginx/
+  containers:
+  - name: ctr-web
+    image: nginx
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/
+  - name: ctr-sync
+    image: k8s.gcr.io/git-sync:v3.1.6
+    volumeMounts:
+    - name: html
+      mountPath: /tmp/git
+    env:
+    - name: GIT_SYNC_REPO
+      value: https://github.com/vladracs/ps-sidecar.git
+    - name: GIT_SYNC_BRANCH
+      value: master
+    - name: GIT_SYNC_DEPTH
+      value: "1"
+    - name: GIT_SYNC_DEST
+      value: "html"
+  volumes:
+  - name: html
+    emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-sidecar-git
+  name: svc-sidecar
   namespace: default
 spec:
   selector:
-    app: git-sync-example
+    app: sidecar
   type: LoadBalancer
 
   ports:
   - protocol: TCP
-    port: 8883
+    port: 8882
     targetPort: 80
