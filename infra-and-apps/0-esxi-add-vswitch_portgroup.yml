@@ -90,7 +90,7 @@ spec:
                         "mtu": 1500,
                         "port_groups": [
                             {
-                                "name": "VM Network 16",
+                                "name": "Data-Vlan16",
                                 "vlan_id": 0
                             }
                         ]
