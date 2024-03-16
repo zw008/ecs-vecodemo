@@ -9,7 +9,7 @@ metadata:
 spec:
   className: best-effort-small
   imageName: 192.168.0.10:9000/tinywin.ova
-  powerState: poweredDown
+  powerState: poweredOff
   networkInterfaces:
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
