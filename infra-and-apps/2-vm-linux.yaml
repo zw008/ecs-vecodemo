@@ -2,15 +2,16 @@
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: harbor-registry
+  name: photon-vm
   namespace: default
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
   className: guaranteed-small
-  imageName: 192.168.0.10:9000/tinycore.ova
-
-  powerState: poweredOff
+  #please don't include http/https prefix in the address. 
+  #We will detect it automatically and also to make it compatible with container image naming spec)
+  imageName: packages.vmware.com/photon/4.0/GA/ova/photon-hw11-4.0-1526e30ba0.ova
+  powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
@@ -31,9 +32,9 @@ data:
       - name: root
         sudo: ALL=(ALL) NOPASSWD:ALL
         lock_passwd: false
-        passwd: '$6$rounds=4096$g4hhnNzlgGol6ghX$E.Qu.vzMA.qzufAhwI84THkFSTjGCTognWAiSt8uioMKjKDUF1wPtIAiKaSyIaT/JuunlWk8pDetIgYLT81Nr0'
+        passwd: '$6$eXrmWR89BbcQ.$3kKTW6Jeu63H8dj3vKWJGI8tV09jk5hc0vDBxNvSqlwZaFYMvNbJoZsAbTAW6HxWRot7bAWAWDayZezmWu8fn0.'
         shell: /bin/bash
     write_files:
       - content: |
-          VECO VM service says Hello World
+          Keswick VM service says Hello World
         path: /helloworld
