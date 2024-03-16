@@ -10,7 +10,7 @@ spec:
   className: guaranteed-small
   imageName: 192.168.0.10:9000/tinycore.ova
 
-  powerState: poweredOn
+  powerState: poweredOff
   networkInterfaces:
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
