@@ -12,10 +12,10 @@ metadata:
   namespace: node-red
 spec:
   ports:
-    - name: "1880"
-      port: 1880
+    - name: "1881"
+      port: 1881
       protocol: TCP
-      targetPort: 1880
+      targetPort: 1881
   selector:
     app: node-red
   sessionAffinity: None
@@ -45,7 +45,7 @@ spec:
           imagePullPolicy: Always
           name: node-red
           ports:
-            - containerPort: 1880
+            - containerPort: 1881
               protocol: TCP
           resources: {}
           env:
