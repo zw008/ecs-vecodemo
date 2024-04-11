@@ -1,4 +1,4 @@
-apiVersion: vmoperator.vmware.com/v1alpha1
+.apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachineClass
 metadata:
   name: best-effort-keswick-small
@@ -27,7 +27,7 @@ metadata:
   namespace: keswick-system
 spec:
   className: best-effort-large
-  imageName: keswick-wrkr.ova
-  powerState: poweredOff
+  imageName: ec-wrkr.ova
+  powerState: poweredOn
   vmMetadata:
     transport: CloudInit
