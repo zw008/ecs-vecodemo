@@ -13,86 +13,58 @@ spec:
             "network_vss": {
                 "switches": [
                     {
-                        "name": "vSwitch0",
                         "bridge": {
                             "link_discovery_protocol": {
-                                "protocol": "CDP",
-                                "operation": "LISTEN"
+                                "operation": "LISTEN",
+                                "protocol": "CDP"
                             },
-                            "nics": ["vmnic0"]
+                            "nics": [
+                                "vmnic0"
+                            ]
+                        },
+                        "name": "vSwitch0",
+                        "policy": {
+                            "nic_teaming": {
+                                "active_nics": [
+                                    "vmnic0"
+                                ],
+                                "link_criteria_beacon": "IGNORE",
+                                "notify_switches": true,
+                                "policy": "LOADBALANCE_SRCID",
+                                "rolling_order": false,
+                                "standby_nics": []
+                            },
+                            "security": {
+                                "allow_promiscuous": false,
+                                "forged_transmits": false,
+                                "mac_changes": false
+                            }
                         },
                         "port_groups": [
                             {
                                 "name": "Management Network",
-                                "vlan_id": 0,
                                 "policy": {
                                     "nic_teaming": {
-                                        "policy": "LOADBALANCE_SRCID",
-                                        "notify_switches": true,
-                                        "rolling_order": false,
+                                        "active_nics": [
+                                            "vmnic0"
+                                        ],
                                         "link_criteria_beacon": "IGNORE",
-                                        "active_nics": ["vmnic0"],
+                                        "notify_switches": true,
+                                        "policy": "LOADBALANCE_SRCID",
+                                        "rolling_order": false,
                                         "standby_nics": []
                                     }
-                                }
+                                },
+                                "vlan_id": 0
                             },
                             {
                                 "name": "VM Network",
                                 "vlan_id": 0
-                            }
-                        ],
-                        "policy": {
-                            "nic_teaming": {
-                                "policy": "LOADBALANCE_SRCID",
-                                "notify_switches": true,
-                                "rolling_order": false,
-                                "link_criteria_beacon": "IGNORE",
-                                "active_nics": ["vmnic0"],
-                                "standby_nics": []
                             },
-                            "security": {
-                                "allow_promiscuous": false,
-                                "mac_changes": false,
-                                "forged_transmits": false
-                            }
-                        }
-                    },
-                    {
-                        "name": "vSwitch1",
-                        "policy": {
-                            "nic_teaming": {
-                                "policy": "LOADBALANCE_SRCID",
-                                "notify_switches": true,
-                                "rolling_order": false,
-                                "link_criteria_beacon": "IGNORE",
-                                "active_nics": [
-                                    
-                                ],
-                                "standby_nics": []
-                            },
-                            "security": {
-                                "allow_promiscuous": false,
-                                "mac_changes": false,
-                                "forged_transmits": false
-                            },
-                            "traffic_shaping": {
-                                "enabled": false
-                            }
-                        },
-                        "bridge": {
-                            "link_discovery_protocol": {
-                                "protocol": "CDP",
-                                "operation": "LISTEN"
-                            },
-                            "nics": [ ]
-                        },
-                        "num_ports": 1024,
-                        "mtu": 1500,
-                        "port_groups": [
                             {
-                                "name": "Data-Vlan16",
-                                "vlan_id": 0
-                            }
+                                "name": "Data VM Network",
+                                "vlan_id": 10
+                            },
                         ]
                     }
                 ]
