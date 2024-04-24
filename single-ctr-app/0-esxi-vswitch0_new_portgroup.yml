@@ -22,45 +22,6 @@ spec:
                                 "vmnic1"
                             ]
                         },
-                        "name": "userSwitch",
-                        "policy": {
-                            "nic_teaming": {
-                                "active_nics": [
-                                    "vmnic1"
-                                ],
-                                "link_criteria_beacon": "IGNORE",
-                                "notify_switches": true,
-                                "policy": "LOADBALANCE_SRCID",
-                                "rolling_order": false,
-                                "standby_nics": []
-                            },
-                            "security": {
-                                "allow_promiscuous": false,
-                                "forged_transmits": false,
-                                "mac_changes": false
-                            }
-                        },
-                        "port_groups": [
-                            {
-                                "name": "VM Network-2",
-                                "vlan_id": 0
-                            },
-                            {
-                                "name": "Data VM Network",
-                                "vlan_id": 10
-                            }
-                        ]
-                    },
-                    {
-                        "bridge": {
-                            "link_discovery_protocol": {
-                                "operation": "LISTEN",
-                                "protocol": "CDP"
-                            },
-                            "nics": [
-                                "vmnic1"
-                            ]
-                        },
                         "name": "userSwitch2",
                         "policy": {
                             "nic_teaming": {
