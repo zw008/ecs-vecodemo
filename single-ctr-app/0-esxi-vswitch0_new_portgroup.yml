@@ -50,6 +50,28 @@ spec:
                                 "vlan_id": 10
                             }
                         ]
+                    },
+                                        {
+                        "bridge": {
+                            "link_discovery_protocol": {
+                                "operation": "LISTEN",
+                                "protocol": "CDP"
+                            },
+                        "name": "userSwitch2-no-uplink",
+                        "policy": {
+                            
+                            "security": {
+                                "allow_promiscuous": false,
+                                "forged_transmits": false,
+                                "mac_changes": false
+                            }
+                        },
+                        "port_groups": [
+                            {
+                                "name": "Intra-VM Network",
+                                "vlan_id": 0
+                            }
+                        ]
                     }
                 ]
             }
