@@ -51,15 +51,28 @@ spec:
                             }
                         ]
                     },
-                                        {
+                    {
                         "bridge": {
                             "link_discovery_protocol": {
                                 "operation": "LISTEN",
                                 "protocol": "CDP"
                             },
-                        "name": "userSwitch2-no-uplink",
+                            "nics": [
+                                "vmnic1"
+                            ]
+                        },
+                        "name": "userSwitch2",
                         "policy": {
-                            
+                            "nic_teaming": {
+                                "active_nics": [
+                                    "vmnic2"
+                                ],
+                                "link_criteria_beacon": "IGNORE",
+                                "notify_switches": true,
+                                "policy": "LOADBALANCE_SRCID",
+                                "rolling_order": false,
+                                "standby_nics": []
+                            },
                             "security": {
                                 "allow_promiscuous": false,
                                 "forged_transmits": false,
@@ -68,8 +81,12 @@ spec:
                         },
                         "port_groups": [
                             {
-                                "name": "Intra-VM Network",
+                                "name": "PG1-v3",
                                 "vlan_id": 0
+                            },
+                            {
+                                "name": "PG2-v3",
+                                "vlan_id": 10
                             }
                         ]
                     }
