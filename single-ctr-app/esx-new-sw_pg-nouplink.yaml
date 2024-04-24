@@ -40,11 +40,11 @@ spec:
                         },
                         "port_groups": [
                             {
-                                "name": "VM Network-2",
+                                "name": "PGUP1",
                                 "vlan_id": 0
                             },
                             {
-                                "name": "Data VM Network",
+                                "name": "PGUP2",
                                 "vlan_id": 10
                             }
                         ]
