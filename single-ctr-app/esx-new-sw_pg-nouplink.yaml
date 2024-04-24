@@ -3,7 +3,7 @@
 apiVersion: esx.vmware.com/v1alpha1
 kind: HostConfiguration
 metadata:
-  name: vswitch-config3
+  name: vswitch-config2
   namespace: esx-system
 spec:
   layertype: Incremental
@@ -13,8 +13,33 @@ spec:
             "network_vss": {
                 "switches": [
                     {
-
-                        "name": "userSwitch4",
+                        "bridge": {
+                            "link_discovery_protocol": {
+                                "operation": "LISTEN",
+                                "protocol": "CDP"
+                            },
+                            "nics": [
+                                "vmnic3"
+                            ]
+                        },
+                        "name": "userSwitch3",
+                        "policy": {
+                            "nic_teaming": {
+                                "active_nics": [
+                                    "vmnic3"
+                                ],
+                                "link_criteria_beacon": "IGNORE",
+                                "notify_switches": true,
+                                "policy": "LOADBALANCE_SRCID",
+                                "rolling_order": false,
+                                "standby_nics": []
+                            },
+                            "security": {
+                                "allow_promiscuous": false,
+                                "forged_transmits": false,
+                                "mac_changes": false
+                            }
+                        },
                         "port_groups": [
                             {
                                 "name": "PG1-v3",
