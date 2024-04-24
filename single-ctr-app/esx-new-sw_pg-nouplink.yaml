@@ -14,7 +14,7 @@ spec:
                 "switches": [
                     {
 
-                        "name": "userSwitch2",
+                        "name": "userSwitch4",
                         "port_groups": [
                             {
                                 "name": "PG1-v3",
