@@ -17,10 +17,22 @@ spec:
                             "link_discovery_protocol": {
                                 "operation": "LISTEN",
                                 "protocol": "CDP"
-                            }
+                            },
+                            "nics": [
+                            ]
                         },
-                        "name": "userSwitch3",
-                        "security": {
+                        "name": "nouplinkSwitch",
+                        "policy": {
+                            "nic_teaming": {
+                                "active_nics": [
+                                ],
+                                "link_criteria_beacon": "IGNORE",
+                                "notify_switches": true,
+                                "policy": "LOADBALANCE_SRCID",
+                                "rolling_order": false,
+                                "standby_nics": []
+                            },
+                            "security": {
                                 "allow_promiscuous": false,
                                 "forged_transmits": false,
                                 "mac_changes": false
@@ -28,11 +40,11 @@ spec:
                         },
                         "port_groups": [
                             {
-                                "name": "PG1-v4",
+                                "name": "VM Network-2",
                                 "vlan_id": 0
                             },
                             {
-                                "name": "PG2-v4",
+                                "name": "Data VM Network",
                                 "vlan_id": 10
                             }
                         ]
