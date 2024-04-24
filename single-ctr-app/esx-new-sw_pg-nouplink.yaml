@@ -28,11 +28,11 @@ spec:
                         },
                         "port_groups": [
                             {
-                                "name": "PG1-v3",
+                                "name": "PG1-v4",
                                 "vlan_id": 0
                             },
                             {
-                                "name": "PG2-v3",
+                                "name": "PG2-v4",
                                 "vlan_id": 10
                             }
                         ]
