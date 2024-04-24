@@ -1,0 +1,33 @@
+
+#Example host configuration adding a new vSwitch and portgroup and assigning them to vmnic1
+apiVersion: esx.vmware.com/v1alpha1
+kind: HostConfiguration
+metadata:
+  name: vswitch-config3
+  namespace: esx-system
+spec:
+  layertype: Incremental
+  profile: |
+    {
+        "esx": {
+            "network_vss": {
+                "switches": [
+                    {
+
+                        "name": "userSwitch2",
+                        "port_groups": [
+                            {
+                                "name": "PG1-v3",
+                                "vlan_id": 0
+                            },
+                            {
+                                "name": "PG2-v3",
+                                "vlan_id": 10
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+    
