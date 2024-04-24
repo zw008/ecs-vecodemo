@@ -17,24 +17,10 @@ spec:
                             "link_discovery_protocol": {
                                 "operation": "LISTEN",
                                 "protocol": "CDP"
-                            },
-                            "nics": [
-                                "vmnic3"
-                            ]
+                            }
                         },
                         "name": "userSwitch3",
-                        "policy": {
-                            "nic_teaming": {
-                                "active_nics": [
-                                    "vmnic3"
-                                ],
-                                "link_criteria_beacon": "IGNORE",
-                                "notify_switches": true,
-                                "policy": "LOADBALANCE_SRCID",
-                                "rolling_order": false,
-                                "standby_nics": []
-                            },
-                            "security": {
+                        "security": {
                                 "allow_promiscuous": false,
                                 "forged_transmits": false,
                                 "mac_changes": false
