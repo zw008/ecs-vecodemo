@@ -3,7 +3,7 @@
 apiVersion: esx.vmware.com/v1alpha1
 kind: HostConfiguration
 metadata:
-  name: vswitch-config
+  name: vswitch-config2
   namespace: esx-system
 spec:
   layertype: Incremental
@@ -13,83 +13,41 @@ spec:
             "network_vss": {
                 "switches": [
                     {
-                        "name": "vSwitch0",
                         "bridge": {
                             "link_discovery_protocol": {
-                                "protocol": "CDP",
-                                "operation": "LISTEN"
+                                "operation": "LISTEN",
+                                "protocol": "CDP"
                             },
-                            "nics": ["vmnic0"]
+                            "nics": [
+                                "vmnic1"
+                            ]
                         },
-                        "port_groups": [
-                            {
-                                "name": "Management Network",
-                                "vlan_id": 0,
-                                "policy": {
-                                    "nic_teaming": {
-                                        "policy": "LOADBALANCE_SRCID",
-                                        "notify_switches": true,
-                                        "rolling_order": false,
-                                        "link_criteria_beacon": "IGNORE",
-                                        "active_nics": ["vmnic0"],
-                                        "standby_nics": []
-                                    }
-                                }
-                            },
-                            {
-                                "name": "VM Network",
-                                "vlan_id": 0
-                            }
-                        ],
+                        "name": "userSwitch",
                         "policy": {
                             "nic_teaming": {
-                                "policy": "LOADBALANCE_SRCID",
-                                "notify_switches": true,
-                                "rolling_order": false,
+                                "active_nics": [
+                                    "vmnic1"
+                                ],
                                 "link_criteria_beacon": "IGNORE",
-                                "active_nics": ["vmnic0"],
+                                "notify_switches": true,
+                                "policy": "LOADBALANCE_SRCID",
+                                "rolling_order": false,
                                 "standby_nics": []
                             },
                             "security": {
                                 "allow_promiscuous": false,
-                                "mac_changes": false,
-                                "forged_transmits": false
-                            }
-                        }
-                    },
-                    {
-                        "name": "vSwitch-Prod",
-                        "policy": {
-                            "nic_teaming": {
-                                "policy": "LOADBALANCE_SRCID",
-                                "notify_switches": true,
-                                "rolling_order": false,
-                                "link_criteria_beacon": "IGNORE",
-                                "active_nics": ["vmnic1"],
-                                "standby_nics": []
-                            },
-                            "security": {
-                                "allow_promiscuous": false,
-                                "mac_changes": false,
-                                "forged_transmits": false
-                            },
-                            "traffic_shaping": {
-                                "enabled": false
+                                "forged_transmits": false,
+                                "mac_changes": false
                             }
                         },
-                        "bridge": {
-                            "link_discovery_protocol": {
-                                "protocol": "CDP",
-                                "operation": "LISTEN"
-                            },
-                            "nics": ["vmnic1"]
-                        },
-                        "num_ports": 1024,
-                        "mtu": 1500,
                         "port_groups": [
                             {
-                                "name": "Data-Vlan16",
+                                "name": "VM Network-2",
                                 "vlan_id": 0
+                            },
+                            {
+                                "name": "Data VM Network",
+                                "vlan_id": 10
                             }
                         ]
                     }
@@ -97,3 +55,4 @@ spec:
             }
         }
     }
+    
