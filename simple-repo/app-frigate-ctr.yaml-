@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: frigate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: frigatemediapv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: frigatesc-media
+  nfs:
+    server: 192.168.0.200
+    path: "/volume1/frigate_media"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: frigatepv-data
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: frigatesc-data
+  nfs:
+    server: 192.168.7.200
+    path: "/volume1/frigate_data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: frigatepvc-media
+  namespace: frigate
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: frigatesc-media
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: frigatepvc-data
+  namespace: frigate
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: frigatesc-data
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frigate
+  namespace: frigate
+spec:
+  selector:
+    matchLabels:
+      app: frigate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frigate
+    spec:
+      containers:
+      - name: frigate
+        image: ghcr.io/blakeblackshear/frigate:stable
+        env:
+        - name: FRIGATE_RTSP_PASSWORD
+          value: 'password'
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: 5000
+        - containerPort: 1935
+        volumeMounts:
+          - name: frigate-pv-data
+            mountPath: "/config"
+          - name: frigate-pv-media
+            mountPath: "/media"
+          - name: coral
+            mountPath: /dev/bus/usb  
+      volumes:
+      - name: frigate-pv-data
+        persistentVolumeClaim:
+          claimName: frigatepvc-data
+      - name: frigate-pv-media
+        persistentVolumeClaim:
+          claimName: frigatepvc-media
+      - name: coral
+        hostPath:
+          path: /dev/bus/usb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frigate
+  namespace: frigate
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 192.168.4.243
+spec:
+  selector:
+    app: frigate
+  ports:
+    - protocol: TCP
+      port: 5000
+      name: http
+    - protocol: TCP
+      port: 1935
+      name: test
+  type: LoadBalancer
