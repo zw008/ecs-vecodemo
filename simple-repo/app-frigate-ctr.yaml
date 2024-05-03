@@ -14,8 +14,8 @@ spec:
     - ReadWriteMany
   storageClassName: frigatesc-media
   nfs:
-    server: 192.168.0.200
-    path: "/volume1/frigate_media"
+    server: 192.168.0.68
+    path: "/mnt/Disks/NFS-SHARE"
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -28,8 +28,8 @@ spec:
     - ReadWriteMany
   storageClassName: frigatesc-data
   nfs:
-    server: 192.168.7.200
-    path: "/volume1/frigate_data"
+    server: 192.168.0.68
+    path: "/mnt/Disks/NFS-SHARE"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -83,13 +83,13 @@ spec:
         ports:
         - containerPort: 5000
         - containerPort: 1935
+        - containerPort: 8554
         volumeMounts:
           - name: frigate-pv-data
             mountPath: "/config"
           - name: frigate-pv-media
             mountPath: "/media"
-          - name: coral
-            mountPath: /dev/bus/usb  
+          
       volumes:
       - name: frigate-pv-data
         persistentVolumeClaim:
@@ -97,9 +97,7 @@ spec:
       - name: frigate-pv-media
         persistentVolumeClaim:
           claimName: frigatepvc-media
-      - name: coral
-        hostPath:
-          path: /dev/bus/usb
+      
 ---
 apiVersion: v1
 kind: Service
@@ -107,7 +105,7 @@ metadata:
   name: frigate
   namespace: frigate
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 192.168.4.243
+    metallb.universe.tf/loadBalancerIPs: 192.168.0.243
 spec:
   selector:
     app: frigate
@@ -118,4 +116,7 @@ spec:
     - protocol: TCP
       port: 1935
       name: test
+    - protocol: TCP
+      port: 8554
+      name: rtsp
   type: LoadBalancer
