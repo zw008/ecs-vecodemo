@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: frigate-volume-claim
+  name: frigatepvc-data
   namespace: frigate-server
 spec:
   storageClassName: nfs-client
