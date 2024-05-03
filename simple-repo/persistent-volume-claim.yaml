@@ -2,7 +2,20 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: frigatepvc-data
-  namespace: frigate-server
+  namespace: frigate
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: "1Gi"
+----
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: frigatepvc-media
+  namespace: frigate
 spec:
   storageClassName: nfs-client
   accessModes:
