@@ -2,60 +2,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: frigate
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: frigatemediapv
-spec:
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteMany
-  storageClassName: frigatesc-media
-  nfs:
-    server: 192.168.0.68
-    path: "/mnt/Disks/NFS-SHARE"
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: frigatepv-data
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteMany
-  storageClassName: frigatesc-data
-  nfs:
-    server: 192.168.0.68
-    path: "/mnt/Disks/NFS-SHARE"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: frigatepvc-media
-  namespace: frigate
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: frigatesc-media
-  resources:
-    requests:
-      storage: 5Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: frigatepvc-data
-  namespace: frigate
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: frigatesc-data
-  resources:
-    requests:
-      storage: 1Gi
+
+
 ---
 apiVersion: apps/v1
 kind: Deployment
