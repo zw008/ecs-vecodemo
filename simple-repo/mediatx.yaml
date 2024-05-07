@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: bluenviron/mediamtx:latest-ffmpeg-rpi
+        image: bluenviron/mediamtx
         ports:
         - containerPort: 8080
