@@ -33,11 +33,16 @@ spec:
         volumeMounts:
           - name: frigate-pv-data
             mountPath: "/config"
-     
+          - name: frigate-pv-media
+            mountPath: "/media"
+       
       volumes:
       - name: frigate-pv-data
         persistentVolumeClaim:
           claimName: frigatepvc-data
+      - name: frigate-pv-media
+        persistentVolumeClaim:
+          claimName: frigatepvc-media
 
       
 ---
