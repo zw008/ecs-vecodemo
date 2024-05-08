@@ -30,19 +30,7 @@ spec:
         - containerPort: 5000
         - containerPort: 1935
         - containerPort: 8554
-        volumeMounts:
-          - name: frigate-pv-data2
-            mountPath: "/config"
-          - name: frigate-pv-media2
-            mountPath: "/media"
-       
-      volumes:
-      - name: frigate-pv-data2
-        persistentVolumeClaim:
-          claimName: frigatepvc-data2
-      - name: frigate-pv-media2
-        persistentVolumeClaim:
-          claimName: frigatepvc-media2
+
 
       
 ---
