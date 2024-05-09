@@ -44,7 +44,7 @@ spec:
           mountPath: /media
       restartPolicy: Never
       volumes:
-      - name: media-volume
+      - name: media
         persistentVolumeClaim:
           claimName: streamedia  # Replace 'my-pvc' with the name of your PVC
   backoffLimit: 4  # Optional: Number of retries before considering the Job as failed
