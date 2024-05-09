@@ -18,13 +18,19 @@ spec:
       storage: "5Gi"
 
 ---
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: ffmpeg-job
-  namespace: ffmpeg
+  name: ffmpeg-deployment
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ffmpeg
   template:
+    metadata:
+      labels:
+        app: ffmpeg
     spec:
       containers:
       - name: ffmpeg-container
@@ -47,4 +53,4 @@ spec:
       - name: media
         persistentVolumeClaim:
           claimName: streamedia  # Replace 'my-pvc' with the name of your PVC
-  backoffLimit: 4  # Optional: Number of retries before considering the Job as failed
+
