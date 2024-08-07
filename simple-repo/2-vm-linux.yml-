@@ -2,7 +2,7 @@
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: photon-vm
+  name: ubuntu-vm
   namespace: default
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
@@ -17,24 +17,30 @@ spec:
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
   vmMetadata:
-    configMapName: user-data-photon
+    configMapName: user-data-ubu
     transport: CloudInit
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: user-data-photon
+    name: user-data-ubu
     namespace: default
 data:
   user-data: |
-    #cloud-config
-    ssh_pwauth: true
-    users:
-      - name: root
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        lock_passwd: false
-        passwd: '$69sWzVthtg/w'
-        shell: /bin/bash
+  #cloud-config
+  users:
+    - name: ubuadmin
+      passwd: $6$Tv0RdtTIhPL8jT$ofpRV.g3V6QfHr3A47FZTnozD2rP5vkwfOmdRO.QfNhe8aO5xnCNHaeYF1BzWZ5VDLwv4Arq19P6ygESqBiO1/
+      lock_passwd: false
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+      shell: /bin/bash
+
+  chpasswd:
+    list: |
+      ubuadmin:VMware1!
+    expire: false
+
+  ssh_pwauth: true
     write_files:
       - content: |
           Keswick VM service says Hello World
