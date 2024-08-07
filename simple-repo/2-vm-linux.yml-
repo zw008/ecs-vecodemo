@@ -7,10 +7,11 @@ metadata:
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
-  className: best-effort-xsmall
+  className: best-effort-medium
   #please don't include http/https prefix in the address. 
   #We will detect it automatically and also to make it compatible with container image naming spec)
-  imageName: packages.vmware.com/photon/4.0/GA/ova/photon-hw11-4.0-1526e30ba0.ova
+  #imageName: packages.vmware.com/photon/4.0/GA/ova/photon-hw11-4.0-1526e30ba0.ova
+  imageName: cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.ova
   powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Network"
@@ -32,7 +33,7 @@ data:
       - name: root
         sudo: ALL=(ALL) NOPASSWD:ALL
         lock_passwd: false
-        passwd: '$6$KaSPeNiVuaC4BXKV$O3ZMIpeYcbScpknYZIVx2fDCG8cmabEjGdvHHY1Fud9WKD/nx7.NUd2lUDwgpYwp24fOzJgZBniF4a6Igjpv4.'
+        passwd: '$69sWzVthtg/w'
         shell: /bin/bash
     write_files:
       - content: |
