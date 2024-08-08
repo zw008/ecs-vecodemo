@@ -26,20 +26,18 @@ metadata:
     namespace: default
 data:
   user-data: |
-  #cloud-config
-  users:
-    - name: ubuadmin
-      passwd: $6$Tv0RdtTIhPL8jT$ofpRV.g3V6QfHr3A47FZTnozD2rP5vkwfOmdRO.QfNhe8aO5xnCNHaeYF1BzWZ5VDLwv4Arq19P6ygESqBiO1/
-      lock_passwd: false
-      sudo: ['ALL=(ALL) NOPASSWD:ALL']
-      shell: /bin/bash
-
-  chpasswd:
-    list: |
-      ubuadmin:VMware1!
-    expire: false
-
-  ssh_pwauth: true
+    #cloud-config
+    ssh_pwauth: true
+    users:
+      - name: ubuadmin
+        passwd: $6$Tv0RdtTIhPL8jT$ofpRV.g3V6QfHr3A47FZTnozD2rP5vkwfOmdRO.QfNhe8aO5xnCNHaeYF1BzWZ5VDLwv4Arq19P6ygESqBiO1/
+        lock_passwd: false
+        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+        shell: /bin/bash
+    chpasswd:
+      list: |
+        ubuadmin:VMware1!
+        expire: false
     write_files:
       - content: |
           Keswick VM service says Hello World
