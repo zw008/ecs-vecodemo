@@ -2,22 +2,21 @@
 apiVersion: vmoperator.vmware.com/v1alpha1
 kind: VirtualMachine
 metadata:
-  name: ubuntu-vm
+  name: photon-vm
   namespace: default
   annotations:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
-  className: best-effort-small
+  className: guaranteed-small
   #please don't include http/https prefix in the address. 
   #We will detect it automatically and also to make it compatible with container image naming spec)
   imageName: packages.vmware.com/photon/4.0/GA/ova/photon-hw11-4.0-1526e30ba0.ova
-  #imageName: cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.ova
   powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Network"
     ethernetCardType: "vmxnet3"
   vmMetadata:
-    configMapName: user-data-ubu
+    configMapName: user-data-photon
     transport: CloudInit
 ---
 apiVersion: v1
