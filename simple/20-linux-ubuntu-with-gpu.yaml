@@ -6,7 +6,7 @@ metadata:
 spec:
   className: guaranteed-small-gpu
   # OVA must be at least with VHW versio 17 or higher
-  imageName: 172.20.0.200/ubuntu-2204-efi-kube-v1.28.7-gpu.ova
+  imageName: 192.168.0.10/ubuntu-2204.ova
   networkInterfaces:
   - ethernetCardType: vmxnet3
     networkName: VM Network
