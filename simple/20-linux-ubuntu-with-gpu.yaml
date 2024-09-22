@@ -6,7 +6,7 @@ metadata:
 spec:
   className: guaranteed-small-gpu
   # OVA must be at least with VHW versio 17 or higher
-  imageName: 192.168.0.10/ubuntu-2204.ova
+  imageName: 192.168.0.10:9000/ubuntu-2204.ova
   networkInterfaces:
   - ethernetCardType: vmxnet3
     networkName: VM Network
