@@ -68,7 +68,7 @@ spec:
     metadata:
       labels:
         app: frigate
-        app.kubernetes.io/version: "0.0.5"
+        app.kubernetes.io/version: "0.0.6"
     spec:
       containers:
         - name: frigate
