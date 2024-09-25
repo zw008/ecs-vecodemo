@@ -80,7 +80,7 @@ spec:
       }
     }
 ---
-Example host configuration adding a new vSwitch and portgroup and assigning them to vmnic1
+#Example host configuration adding a new vSwitch and portgroup and assigning them to vmnic1
 apiVersion: esx.vmware.com/v1alpha1
 kind: HostConfiguration
 metadata:
