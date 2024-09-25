@@ -151,7 +151,7 @@ data:
               "disableTextWrap": false,
               "editorMode": "code",
               "exemplar": false,
-              "expr": "count by(uuid) (vsphere_vm_sys_uptime_latest)",
+              "expr": "count(count by(uuid) (vsphere_vm_sys_uptime_latest))",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": true,
@@ -357,16 +357,16 @@ data:
                 "lastNotNull"
               ],
               "fields": "",
-              "values": false
+              "values": true
             },
             "showUnfilled": true,
             "sizing": "manual",
             "text": {
-              "titleSize": 1
+              "titleSize": 10
             },
             "valueMode": "text"
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "11.1.3",
           "targets": [
             {
               "datasource": {
@@ -388,7 +388,20 @@ data:
             }
           ],
           "title": "List of Running VMs (%Avg CPU Usage)",
-          "type": "bargauge"
+          "type": "bargauge",
+          "transformations": [
+            {
+              "id": "filterFieldsByName",
+              "options": {
+                "include": {
+                  "names": [
+                      "vmname",
+                      "Value"
+                   ]
+                  }
+                }
+              }
+          ] 
         },
         {
           "datasource": {
@@ -1737,3 +1750,4 @@ data:
       "version": 1,
       "weekStart": ""
     }
+
