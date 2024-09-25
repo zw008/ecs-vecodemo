@@ -1,0 +1,42 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: sample-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cv-app-deployment
+  namespace: sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cv-app
+  template:
+    metadata:
+      labels:
+        app: cv-app
+    spec:
+      containers:
+      - name: cv-app-container
+        image: docker.io/vladrac/mock-up:latest # Replace with your image
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cv-app-service
+  namespace: sample-app
+spec:
+  type: NodePort # Use NodePort or LoadBalancer based on your cluster configuration
+  selector:
+    app: cv-app
+  ports:
+    - protocol: TCP
+      port: 5000 # Exposed port of the service
+      targetPort: 5000 # Container's port
+      nodePort: 30000 # Kubernetes will expose this port on the host machine
