@@ -80,24 +80,58 @@ spec:
       }
     }
 ---
-#Example showing how to enable USB NIC Scan on boot
+Example host configuration adding a new vSwitch and portgroup and assigning them to vmnic1
 apiVersion: esx.vmware.com/v1alpha1
 kind: HostConfiguration
 metadata:
-  name: usb-nic-scan-on-boot
+  name: vswitch-config3
   namespace: esx-system
 spec:
   layertype: Incremental
   profile: |
     {
-      "esx": {
-          "vmkernel": {
-            "module_settings": [
-              {
-                "module_name": "vmkusb_nic_fling",
-                "options": "usbBusFullScanOnBootEnabled=1"
-              }
-            ]
-          }
-      }
+        "esx": {
+            "network_vss": {
+                "switches": [
+                    {
+                        "bridge": {
+                            "link_discovery_protocol": {
+                                "operation": "LISTEN",
+                                "protocol": "CDP"
+                            },
+                            "nics": [
+                            ]
+                        },
+                        "name": "nouplinkSwitch",
+                        "policy": {
+                            "nic_teaming": {
+                                "active_nics": [
+                                ],
+                                "link_criteria_beacon": "IGNORE",
+                                "notify_switches": true,
+                                "policy": "LOADBALANCE_SRCID",
+                                "rolling_order": false,
+                                "standby_nics": []
+                            },
+                            "security": {
+                                "allow_promiscuous": false,
+                                "forged_transmits": false,
+                                "mac_changes": false
+                            }
+                        },
+                        "port_groups": [
+                            {
+                                "name": "PGUP1",
+                                "vlan_id": 0
+                            },
+                            {
+                                "name": "PGUP2",
+                                "vlan_id": 10
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
     }
+    
