@@ -1,13 +1,13 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: sample-app
+  name: sample-app2
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cv-app-deployment
-  namespace: sample-app
+  name: cv-app-deployment2
+  namespace: sample-app2
 spec:
   replicas: 1
   selector:
@@ -19,7 +19,7 @@ spec:
         app: cv-app
     spec:
       containers:
-      - name: cv-app-container
+      - name: cv-app-container2
         image: docker.io/vladrac/mock-up:latest # Replace with your image
         ports:
         - containerPort: 5000
@@ -29,8 +29,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cv-app-service
-  namespace: sample-app
+  name: cv-app-service2
+  namespace: sample-app2
 spec:
   type: NodePort # Use NodePort or LoadBalancer based on your cluster configuration
   selector:
