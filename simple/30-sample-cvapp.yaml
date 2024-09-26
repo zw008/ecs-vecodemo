@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: cv-app-container2
-        image: docker.io/vladrac/mock-up:latest # Replace with your image
+        image: docker.io/vladrac/mock-up:1.0.0 # Replace with your image
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
