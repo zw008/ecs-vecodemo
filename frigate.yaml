@@ -48,7 +48,7 @@ data:
       front_road:
         ffmpeg:
           inputs:
-            - path: rtsp://192.168.100.251:554/ch01.264
+            - path: rtsp://admin:Paloalto1@192.168.100.240/stream1
               roles:
                 - detect
                 - rtmp
