@@ -48,7 +48,7 @@ data:
       front_road:
         ffmpeg:
           inputs:
-            - path: ‘rtsp://admin:Paloalto1@192.168.100.240/stream1’
+            - path: rtsp://admin:Paloalto1@192.168.100.240/stream1
               roles:
                 - detect
                 - rtmp
@@ -72,7 +72,7 @@ spec:
     spec:
       containers:
         - name: frigate
-          image: ghcr.io/blakeblackshear/frigate:0.14.1
+          image: ghcr.io/blakeblackshear/frigate:stable
           ports:
             - name: http
               containerPort: 5000
