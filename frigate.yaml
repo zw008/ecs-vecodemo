@@ -38,6 +38,12 @@ data:
       cpu1:
         type: cpu
 
+    objects:
+      track:
+        - person
+        - car
+        - bicycle
+
     cameras:
       front_road:
         ffmpeg:
