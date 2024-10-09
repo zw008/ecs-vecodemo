@@ -1,4 +1,9 @@
-piVersion: batch/v1
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ffmpeg
+---
+apiVersion: batch/v1
 kind: Job
 metadata:
   name: ffmpeg-job
