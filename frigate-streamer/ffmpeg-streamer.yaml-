@@ -28,14 +28,8 @@ spec:
           value: "https://ent.box.com/shared/static/pnsp2zeix9tsvgi0u663i8kmmdypkx63.mp4"  # Replace with the URL of your video source
         - name: RTSP_PORT
           value: "8554"
-        # Optional resource limits
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
+
+
 ---
 apiVersion: v1
 kind: Service
