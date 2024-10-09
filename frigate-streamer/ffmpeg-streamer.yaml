@@ -6,7 +6,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ffmpeg-rtsp-deployment
+  name: ffmpeg-rtsp-deployment2
   namespace: ffmpeg   # Specify the namespace here
 spec:
   replicas: 1
