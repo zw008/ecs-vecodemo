@@ -16,13 +16,15 @@ spec:
         image: linuxserver/ffmpeg
         command: ["ffmpeg"]
         args:
-        - "-re"  # Real-time streaming mode
+        - "-re"
         - "-stream_loop"
-        - "-1"  # Loop the video indefinitely
+        - "-1"
         - "-i"
-        - "https://ent.box.com/shared/static/pnsp2zeix9tsvgi0u663i8kmmdypkx63.mp4"  # Replace with the actual URL of the external video stream
+        - "https://ent.box.com/shared/static/pnsp2zeix9tsvgi0u663i8kmmdypkx63.mp4"
+        - "-c:v"  # Specify the video codec
+        - "libx264"  # Use H.264 encoding
         - "-f"
         - "rtsp"
-        - "rtsp://192.168.0.240:8554/live/stream"  # This sends the stream to MediaMTX (mediatx) on port 8554
+        - "rtsp://192.168.0.240:8554/live/stream"
       restartPolicy: Never
   backoffLimit: 4  
