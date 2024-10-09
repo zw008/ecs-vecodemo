@@ -23,6 +23,6 @@ spec:
         - "https://ent.box.com/shared/static/pnsp2zeix9tsvgi0u663i8kmmdypkx63.mp4"  # Replace with the actual URL of the external video stream
         - "-f"
         - "rtsp"
-        - "rtsp://192.168.0.240:8554/live/stream"  # This sends the stream to MediaMTX (mediatx) on port 8554
+        - "rtsp://192.168.0.240:30860/live/stream"  # This sends the stream to MediaMTX (mediatx) on port 8554
       restartPolicy: Never
   backoffLimit: 4  
