@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: ffmpeg-rtsp
-        image: https://44.219.3.189/vladrac/ffmpeg_rtsp:latest   # Replace with your Docker Hub image
+        image: 44.219.3.189/vladrac/ffmpeg_rtsp:latest   # Replace with your Docker Hub image
         ports:
         - containerPort: 8554   # Expose the RTSP port
         env:
