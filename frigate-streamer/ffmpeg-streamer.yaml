@@ -41,12 +41,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ffmpeg-rtsp-service
-  namespace: ffmpeg   # Specify the namespace here
+  namespace: ffmpeg   
 spec:
-  type: ClusterIP   # Use LoadBalancer for external access, or NodePort for specific host/port mapping
+  type: NodePort   
   ports:
     - port: 8554
-      targetPort: 8554
+      nodePort: 30554
       protocol: TCP
       name: rtsp
   selector:

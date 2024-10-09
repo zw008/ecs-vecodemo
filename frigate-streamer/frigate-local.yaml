@@ -105,8 +105,7 @@ data:
       TFD-CV:
         ffmpeg:
           inputs:
-            - path: rtsp://ffmpeg-rtsp-service:8554/live.sdp
-              roles:
+            - path: rtsp://192.168.0.66:30554/live.sdp
                 - detect
                 - record
         detect:
