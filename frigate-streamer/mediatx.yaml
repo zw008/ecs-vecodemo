@@ -42,7 +42,11 @@ spec:
   selector:
     app: mediatx
   ports:
-    - protocol: TCP
-      port: 8554
-      name: rtsp
+  - protocol: TCP
+    port: 8554
+    name: rtsp
+  - protocol: UDP
+    port: 1935
+  - protocol: UDP
+    port: 8189
   type: LoadBalancer
