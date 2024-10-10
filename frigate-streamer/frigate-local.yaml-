@@ -118,11 +118,6 @@ data:
       track:
         - car
         - person
-        - banana
-        - apple
-        - orange
-        - broccoli
-        - carrot
     snapshots:
       enabled: true
       timestamp: true
