@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ffmpeg-job
+  namespace: ffmpeg
+spec:
+  template:
+    spec:
+      containers:
+      - name: ffmpeg-container
+        image: linuxserver/ffmpeg
+        command: ["/bin/sh", "-c"]  # Run shell commands
+        args:
+        - |
+          apt-get update && apt-get install -y python3-pip && \
+          pip3 install yt-dlp && \
+          yt-dlp -f best -g "https://www.youtube.com/watch?v=CiklAyGrmcc" > youtube_url.txt && \
+          youtube_url=$(cat youtube_url.txt) && \
+          ffmpeg -re -i "$youtube_url" \
+                 -c:v libx264 -preset medium -pix_fmt yuv420p -r 30 -b:v 2500k \
+                 -f rtsp rtsp://192.168.0.240:8554/live/stream
+      restartPolicy: Never
+  backoffLimit: 4
