@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sdwan-client
-        image: docker.io/vladrac/sdwan-client:latest  # Replace with your Docker Hub image
+        image: docker.io/vladrac/sdwan-client:v1.0.0  # Replace with your Docker Hub image
         imagePullPolicy: Always
         env:
         - name: SDWAN_TOKEN
