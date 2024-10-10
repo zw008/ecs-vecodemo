@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sdwan-client-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sdwan-client
+  template:
+    metadata:
+      labels:
+        app: sdwan-client
+    spec:
+      containers:
+      - name: sdwan-client
+        image: vladrac/sdwan-client:latest  # Replace with your Docker Hub image
+        env:
+        - name: SDWAN_TOKEN
+          value: "MWJmODc3OWMtMGJhYS00NzQ1LWE0OWYtODVlZDBhMDNhZTM0fGRvNjBkaDd1N2NkcXI4Zms4cjZn"  # Replace with your actual token
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
