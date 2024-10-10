@@ -112,7 +112,7 @@ data:
         detect:
           width: 1280
           height: 960
-          fps: 5
+          fps: 10
         objects:
           track:
             - car
@@ -135,6 +135,7 @@ data:
             labels:
               - car
               - person
+              - apple
           detections:
             labels:
             - car
