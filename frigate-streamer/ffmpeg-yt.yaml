@@ -14,11 +14,11 @@ spec:
       containers:
       - name: ffmpeg-container
         image: linuxserver/ffmpeg
-        command: ["/bin/sh", "-c"]  # Run shell commands
+        command: ["/bin/sh", "-c"]
         args:
         - |
           apt-get update;
-          apt-get install -y curl;
+          apt-get install -y python3;
           curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp;
           chmod +x /usr/local/bin/yt-dlp;
           yt-dlp -f best -g "https://www.youtube.com/watch?v=CiklAyGrmcc" > youtube_url.txt;
@@ -28,3 +28,4 @@ spec:
                  -f rtsp rtsp://192.168.0.240:8554/live/stream
       restartPolicy: Never
   backoffLimit: 4
+
