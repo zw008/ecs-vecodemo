@@ -18,8 +18,9 @@ spec:
         args:
         - |
           apt-get update;
-          apt-get install -y python3-pip;
-          pip3 install yt-dlp;
+          apt-get install -y curl;
+          curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp;
+          chmod +x /usr/local/bin/yt-dlp;
           yt-dlp -f best -g "https://www.youtube.com/watch?v=CiklAyGrmcc" > youtube_url.txt;
           youtube_url=$(cat youtube_url.txt);
           ffmpeg -re -i "$youtube_url" \
