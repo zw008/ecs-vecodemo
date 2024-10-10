@@ -12,7 +12,7 @@ spec:
   # needed capabilities to deploy keswick worker vm.
   controllerName: vmoperator.vmware.com/keswickworker
   hardware:
-    cpus: 4
+    cpus: 8
     memory: 12Gi
 ---
 apiVersion: v1
