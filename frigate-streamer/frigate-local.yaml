@@ -100,49 +100,48 @@ data:
   config.yaml: |+
     mqtt:
       enabled: false
-
-   cameras:
-  FAKE-CV:
-    ffmpeg:
-      inputs:
-        - path: rtsp://192.168.0.240:8554/live/stream
-          roles:
-            - detect
-            - record
-            - track
-    detect:
-      width: 1280
-      height: 960
-      fps: 5
-    objects:
-      track:
-        - car
-        - person
-    snapshots:
-      enabled: true
-      timestamp: true
-      bounding_box: true
-      retain:
-        default: 5
-    record:
-      enabled: true
-      retain:
-        days: 1
-      events:
-        retain:
-          default: 5
-    review:
-      alerts:
-        labels:
-          - car
-          - person
-      detections:
-        labels:
-        - car
-        - person
-        - banana
-        - apple
-        - orange
-        - broccoli
-        - carrot
+    cameras:
+      FAKE-CV:
+        ffmpeg:
+          inputs:
+            - path: rtsp://192.168.0.240:8554/live/stream
+              roles:
+                - detect
+                - record
+                - track
+        detect:
+          width: 1280
+          height: 960
+          fps: 5
+        objects:
+          track:
+            - car
+            - person
+        snapshots:
+          enabled: true
+          timestamp: true
+          bounding_box: true
+          retain:
+            default: 5
+        record:
+          enabled: true
+          retain:
+            days: 1
+          events:
+            retain:
+              default: 5
+        review:
+          alerts:
+            labels:
+              - car
+              - person
+          detections:
+            labels:
+            - car
+            - person
+            - banana
+            - apple
+            - orange
+            - broccoli
+            - carrot
     version: 0.14
