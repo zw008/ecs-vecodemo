@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sdwan-client
-        image: vladrac/sdwan-client:1.0.0  # Replace with your Docker Hub image
+        image: docker.io/vladrac/sdwan-client:1.0.0  # Replace with your Docker Hub image
         env:
         - name: SDWAN_TOKEN
           value: "MWJmODc3OWMtMGJhYS00NzQ1LWE0OWYtODVlZDBhMDNhZTM0fGRvNjBkaDd1N2NkcXI4Zms4cjZn"  # Replace with your actual token
