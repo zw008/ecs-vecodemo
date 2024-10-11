@@ -25,6 +25,6 @@ spec:
         - "libx264"  # Use H.264 encoding
         - "-f"
         - "rtsp"
-        - "rtsp://192.168.0.240:8554/live/stream"
+        - "rtsp://192.168.111.240:8554/live/stream"
       restartPolicy: Never
   backoffLimit: 4  
