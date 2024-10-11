@@ -26,7 +26,7 @@ spec:
             youtube_url=$(cat youtube_url.txt);
             ffmpeg -re -i "$youtube_url" \
                    -c:v libx264 -preset medium -pix_fmt yuv420p -r 30 -b:v 2500k \
-                   -f rtsp rtsp://192.168.0.240:8554/live/stream;
+                   -f rtsp rtsp://192.168.111.240:8554/live/stream;
           done
       restartPolicy: Never
   backoffLimit: 4
