@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: frigate
-        image: ghcr.io/blakeblackshear/frigate:Latest
+        image: ghcr.io/blakeblackshear/frigate:stable
         env:
         - name: FRIGATE_RTSP_PASSWORD
           value: 'password'
@@ -104,7 +104,7 @@ data:
       FAKE-CV:
         ffmpeg:
           inputs:
-            - path: rtsp://192.168.111.240:8554/live/stream
+            - path: rtsp://192.168.0.240:8554/live/stream
               roles:
                 - detect
                 - record
@@ -145,4 +145,4 @@ data:
             - orange
             - broccoli
             - carrot
-    version: 0.12
+    version: 0.14
