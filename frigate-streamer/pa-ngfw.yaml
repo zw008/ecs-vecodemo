@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ngfw
+---
+apiVersion: vmoperator.vmware.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: pa-ngfw-11.2
+  namespace: ngfw
+  annotations:
+    vmoperator.vmware.com/image-supported-check: disable
+spec:
+  className: best-effort-small
+  imageName: 192.168.53.192:8080/PA-VM-ESX-11.2.0.ova
+  powerState: poweredOff
+  networkInterfaces:
+  - networkName: "VM Internal Network"
+    ethernetCardType: "vmxnet3"
