@@ -12,7 +12,7 @@ metadata:
     vmoperator.vmware.com/image-supported-check: disable
 spec:
   className: best-effort-small
-  imageName: 192.168.100.242:8080/PA-VM-ESX-11.2.0.ova
+  imageName: 192.168.53.192:8080/PA-VM-ESX-11.2.0.ova
   powerState: poweredOff
   networkInterfaces:
   - networkName: "VM Internal Network"
