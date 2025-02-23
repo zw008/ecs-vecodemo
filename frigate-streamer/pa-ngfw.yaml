@@ -13,7 +13,7 @@ metadata:
 spec:
   className: best-effort-small
   imageName: 192.168.100.242:8080/PA-VM-ESX-11.2.0.ova
-  powerState: poweredOff
+  powerState: poweredOn
   networkInterfaces:
   - networkName: "VM Internal Network"
     ethernetCardType: "vmxnet3"
